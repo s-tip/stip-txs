@@ -1,0 +1,38 @@
+---
+
+- id: discovery
+  type: discovery
+  address: /services/discovery
+  advertised_services:
+    - discovery
+    - collection_management
+    - poll
+    - inbox
+  protocol_bindings:
+    - urn:taxii.mitre.org:protocol:http:1.0
+
+- id: collection_management
+  type: collection_management
+  address: /services/collection-management
+  protocol_bindings:
+    - urn:taxii.mitre.org:protocol:http:1.0
+
+- id: poll
+  type: poll
+  address: /services/poll
+  subscription_required: no
+  max_result_count: -1
+  max_result_size: -1
+  authentication_required: yes
+  protocol_bindings:
+    - urn:taxii.mitre.org:protocol:http:1.0
+
+- id: inbox
+  type: inbox
+  address: /services/inbox
+  description: S-TIP TAXII Server Inbox Service
+  destination_collection_required: yes 
+  authentication_required: yes
+  accept_all_content: yes
+  protocol_bindings:
+    - urn:taxii.mitre.org:protocol:http:1.0

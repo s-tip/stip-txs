@@ -1,0 +1,21 @@
+domain: "10.0.3.100:9000"
+support_basic_auth: yes
+
+persistence_api:
+  class: api.StipTaxiiServerAPI
+  parameters:
+     service_yaml_path : /opt/s-tip/txs/conf/services.yaml
+     black_account_list : gv_concierge
+     community_name : stip-taxii-server
+     taxii_publisher : admin
+     version_path : /opt/s-tip/txs/version
+
+
+auth_api:
+  class: auth.StipTaxiiServerAuth
+
+logging:
+  opentaxii: info
+  root: info
+
+hooks:
