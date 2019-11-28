@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import django
 import yaml
 import datetime
@@ -6,7 +5,7 @@ import dateutil.tz
 import gridfs
 import traceback
 import tempfile
-import StringIO
+import io
 import structlog
 from pymongo import Connection
 from opentaxii.persistence.api import OpenTAXIIPersistenceAPI
@@ -48,7 +47,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
   		except IOError:
   			version = 'No version information.'
 
-  		print '>>>>>: S-TIP TAXII Server Start: ' + str(version)
+  		print('>>>>>: S-TIP TAXII Server Start: ' + str(version))
   			
   		self.community = Communities.objects.get(name=community_name)
   		self.via = Vias.get_via_taxii_publish(taxii_publisher)
@@ -141,7 +140,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
 		if s is not None:
 			#ServiceEntityと関連付けされているCollectionEntityを検索する
 			for ref in self.service_to_collection:
-				if ref.has_key(service_id) == True:
+				if (service_id in ref) == True:
 					for col in self.collections:
 						if col.id == ref[service_id]:
 							ret.append(col)
@@ -230,7 +229,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
 		for stix_file in self.get_stix_files_from_mongo(collection_name,start_time,end_time)[offset:limit]:
 			content = stix_file.content.read()
 			#ここでフィルタリングする
-			stix_like_file = StringIO.StringIO(content)
+			stix_like_file = io.StringIO(content)
 			stix_package = STIXPackage.from_xml(stix_like_file)
 			#username によるフィルタリング
 			username = self.get_stip_sns_username(stix_package)
