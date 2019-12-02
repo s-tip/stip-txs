@@ -176,8 +176,8 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
         # 条件絞り込み
         QQ = Q(information_source__in=ts.information_sources)
         # for is_ in ts.information_sources:
-        #	print '>>>get_stix_files_from_mongo:information_sources:' + str(is_.name)
-        #	print '>>>get_stix_files_from_mongo:information_sources:' + str(is_.id)
+        #     print '>>>get_stix_files_from_mongo:information_sources:' + str(is_.name)
+        #     print '>>>get_stix_files_from_mongo:information_sources:' + str(is_.id)
         if start_time is not None and end_time is not None:
             QQ = QQ & Q(produced__gt=start_time)
             QQ = QQ & Q(produced__lt=end_time)
@@ -235,7 +235,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
             if username in self.black_account_list:
                 # username が black list に含まれる場合はskip
                 # print '>>> %s is skipped by black list filter:' + str(stix_package.stix_header.title)
-                #import sys
+                # import sys
                 # sys.stdout.flush()
                 continue
             stix_like_file.close()
@@ -286,7 +286,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
         # print '<<<<create_content_block exit'
         # content_balock_entity.contentに中身が格納される
         # with open('/home/terra/work/libtaxii/server/output/output_BabyTiger.xml','w') as fp:
-        #	fp.write(content_block_entity.content)
+        #     fp.write(content_block_entity.content)
         # ctirs に registする
         stix_file_path = tempfile.mktemp(suffix='.xml')
         with open(stix_file_path, 'wb+') as fp:
