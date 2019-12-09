@@ -38,11 +38,11 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
                  taxii_publisher,
                  black_account_list,
                  version_path):
-        with open(service_yaml_path, 'r') as fp:
+        with open(service_yaml_path, 'r', encoding='utf-8') as fp:
             services = yaml.load(fp)
 
         try:
-            with open(version_path, 'r') as fp:
+            with open(version_path, 'r', encoding='utf-8') as fp:
                 version = fp.readline().strip()
         except IOError:
             version = 'No version information.'
@@ -285,7 +285,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
         # print '>>>>create_content_block:service_id:' + str(service_id)
         # print '<<<<create_content_block exit'
         # content_balock_entity.contentに中身が格納される
-        # with open('/home/terra/work/libtaxii/server/output/output_BabyTiger.xml','w') as fp:
+        # with open('/home/terra/work/libtaxii/server/output/output_BabyTiger.xml','w', encoding='utf-8') as fp:
         #     fp.write(content_block_entity.content)
         # ctirs に registする
         stix_file_path = tempfile.mktemp(suffix='.xml')
