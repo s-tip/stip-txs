@@ -1,4 +1,8 @@
 from mongoengine.queryset.visitor import Q
+
+# django application 起動
+django.setup()
+
 from ctirs.core.mongo.documents_stix import StixFiles
 from ctirs.core.mongo.documents import TaxiiServers, InformationSources, Vias, Communities
 import django
@@ -25,8 +29,6 @@ from stix.extensions.marking.simple_marking import SimpleMarkingStructure
 from stix.extensions.marking.ais import AISMarkingStructure
 
 
-# django application 起動
-django.setup()
 
 
 class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
