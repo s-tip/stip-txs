@@ -1,11 +1,11 @@
 from mongoengine.queryset.visitor import Q
+import django
 
 # django application 起動
 django.setup()
 
 from ctirs.core.mongo.documents_stix import StixFiles
 from ctirs.core.mongo.documents import TaxiiServers, InformationSources, Vias, Communities
-import django
 import yaml
 import datetime
 import dateutil.tz
