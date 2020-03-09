@@ -3,6 +3,6 @@ export PYTHONPATH=/opt/s-tip/txs/src:/opt/s-tip/rs/src
 export OPENTAXII_CONFIG=/opt/s-tip/txs/conf/config.yaml
 export DJANGO_SETTINGS_MODULE=ctirs.settings
 
-gunicorn3 opentaxii.http:app --bind 10.0.3.100:9000 --daemon
-#gunicorn opentaxii.http:app --bind 10.0.3.100:9000  --log-level debug
+gunicorn3 opentaxii.http:app --bind 192.168.1.1:9000 --daemon
+#gunicorn opentaxii.http:app --bind 192.168.1.1:9000  --log-level debug
 
