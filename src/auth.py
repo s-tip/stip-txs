@@ -4,7 +4,7 @@ import dateutil.tz
 from decouple import Csv, config, UndefinedValueError
 from opentaxii.auth.api import OpenTAXIIAuthAPI
 from opentaxii.entities import Account
-import django.contrib.auth
+from stip.common.rest_api_auth import auth_by_api_key
 
 
 class StipTaxiiServerAuth(OpenTAXIIAuthAPI):
@@ -12,7 +12,7 @@ class StipTaxiiServerAuth(OpenTAXIIAuthAPI):
         pass
 
     def authenticate(self, username, password):
-        stip_user = django.contrib.auth.authenticate(username=username, password=password)
+        stip_user = auth_by_api_key(username, password)
         if stip_user is None:
             return
         return Account(id=stip_user.id, username=stip_user.username)
