@@ -5,7 +5,7 @@ import django
 django.setup()
 
 from ctirs.core.mongo.documents_stix import StixFiles
-from ctirs.core.mongo.documents import TaxiiServers, InformationSources, Vias, Communities
+from ctirs.core.mongo.documents import TaxiiServers, Vias, Communities
 import yaml
 import datetime
 import dateutil.tz
@@ -26,8 +26,6 @@ from stix.core import STIXPackage
 from stix.data_marking import MarkingSpecification
 from stix.extensions.marking.simple_marking import SimpleMarkingStructure
 from stix.extensions.marking.ais import AISMarkingStructure
-
-
 
 
 class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
@@ -152,7 +150,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
         ts = TaxiiServers.objects.get(collection_name=collection_name)
 
         # 条件絞り込み
-        QQ = Q(information_source__in=ts.information_sources)
+        QQ = Q(input_community__in=ts.communities)
         QQ = QQ & Q (version__startswith='1.')
         if start_time is not None and end_time is not None:
             QQ = QQ & Q(produced__gt=start_time)
