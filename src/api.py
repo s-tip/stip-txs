@@ -4,7 +4,6 @@ import django
 # django application 起動
 django.setup()
 
-from ctirs.core.mongo.documents_stix import StixFiles
 from ctirs.core.mongo.documents import TaxiiServers, Vias, Communities
 import yaml
 import datetime
@@ -146,6 +145,7 @@ class StipTaxiiServerAPI(OpenTAXIIPersistenceAPI):
 
     # mongo の stix_files コレクションより開始日時と終了日時の間 を find し cursor を返却する
     def get_stix_files_from_mongo(self, collection_name, start_time, end_time):
+        from ctirs.core.mongo.documents_stix import StixFiles
         # TAXII Server 設定取得
         ts = TaxiiServers.objects.get(collection_name=collection_name)
 
